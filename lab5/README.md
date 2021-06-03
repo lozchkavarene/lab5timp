@@ -18,7 +18,7 @@
 $ git clone https://github.com/lozchkavrene/lab4 projects/lab5timp
 $ cd projects/lab5timp
 $ git remote remove origin
-$ git remote add origin https://github.com/lozchkavarene/lab5timp
+$ git remote add origin https://github.com/lozchkavarene/lab5
 $ git commit -am "init commit"
 ```
 
