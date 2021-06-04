@@ -1,0 +1,19 @@
+language: cpp
+
+compiler: 
+  - gcc
+  - clang
+
+script:
+  - cmake -H. -Bbuild -DBUILD_TESTS=ON
+  - cmake --build build
+  - ./build/check
+
+# Upgrading cmake to 3.2.3
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports
+    packages:
+      - cmake
+      - cmake-data
