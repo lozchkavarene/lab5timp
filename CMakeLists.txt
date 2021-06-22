@@ -1,17 +1,20 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.4)
 
-project(print)
+set(CMAKE_CXX_STANDART 11)
+set(CMAKE_CXX_STANDART _REQUIRED ON)
+
+project(hwlab05)
+
+include_directories(banking)
+add_subdirectory(banking banking)
 
 option(BUILD_TESTS "Build tests" OFF)
 
-include_directories(lib)
-add_library(print STATIC lib/print.cpp)
-
 if(BUILD_TESTS)
-  enable_testing()
-  add_subdirectory(third-party/gtest)
-  file(GLOB PRINT_TEST_SOURCES tests/*.cpp)
-  add_executable(check ${PRINT_TEST_SOURCES})
-  target_link_libraries(check print gtest_main)
-  add_test(NAME check COMMAND check)
-endif()
+enable_testing()
+add_subdirectory(third-party/gtest)
+add_executable(check test/test.cpp)
+target_compile_options(check PRIVATE --coverage)
+target_link_libraries(check banking gtest_main gmock_main --coverage)
+add_test(NAME check COMMAND check)
+Endif()
